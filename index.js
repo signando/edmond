@@ -2,18 +2,44 @@
 document.addEventListener("DOMContentLoaded", function() {
     function toggleMenu() {
         const nav = document.getElementById('navMain');
-        nav.classList.toggle('active');
-    }
-
-    function toggleSubmenu(element) {
-        // Werkt alleen op schermen kleiner dan 993px (mobiel/tablet)
-        if (window.innerWidth <= 992) {
-            const submenu = element.nextElementSibling;
-            if (submenu) {
-                submenu.classList.toggle('open');
-            }
+        const toggleBtn = document.querySelector('.menu-toggle');
+        if (!nav) return;
+    
+        const isOpen = nav.classList.toggle('active');
+        if (toggleBtn) {
+            toggleBtn.setAttribute('aria-expanded', String(isOpen));
+            toggleBtn.textContent = isOpen ? '✕ Sluiten' : '☰ Menu';
         }
     }
+    
+    function toggleSubmenu(element) {
+        if (window.innerWidth > 992 || !element) return;
+    
+        const submenu = element.nextElementSibling;
+        if (!submenu) return;
+    
+        const isOpen = submenu.classList.toggle('open');
+        element.setAttribute('aria-expanded', String(isOpen));
+    }
+    
+    function handleSubmenuKey(event, element) {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            toggleSubmenu(element);
+        }
+    }
+    
+    // Reset mobiele open-status als het scherm naar desktop wordt vergroot
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 992) {
+            document.querySelectorAll('.nav-hidden-cont.open, .verwarming.open').forEach((el) => {
+                el.classList.remove('open');
+            });
+            document.querySelectorAll('.nav-main [aria-expanded="true"]').forEach((el) => {
+                el.setAttribute('aria-expanded', 'false');
+            });
+        }
+    });
 
 
 
