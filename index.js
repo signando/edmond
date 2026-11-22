@@ -1,34 +1,46 @@
 "use strict";
 document.addEventListener("DOMContentLoaded", function() {
+    const nav = document.getElementById('navMain');
+    const toggleBtn = document.querySelector('.menu-toggle');
+    const submenuTriggers = document.querySelectorAll('.h2-airco, .h2-verwarming, .h3-central-ver, .h3-radiatoren-ver');
+
     function toggleMenu() {
-        const nav = document.getElementById('navMain');
-        const toggleBtn = document.querySelector('.menu-toggle');
         if (!nav) return;
-    
+
         const isOpen = nav.classList.toggle('active');
         if (toggleBtn) {
             toggleBtn.setAttribute('aria-expanded', String(isOpen));
             toggleBtn.textContent = isOpen ? '✕ Sluiten' : '☰ Menu';
         }
     }
-    
+
     function toggleSubmenu(element) {
         if (window.innerWidth > 992 || !element) return;
-    
+
         const submenu = element.nextElementSibling;
         if (!submenu) return;
-    
+
         const isOpen = submenu.classList.toggle('open');
         element.setAttribute('aria-expanded', String(isOpen));
     }
-    
-    function handleSubmenuKey(event, element) {
-        if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            toggleSubmenu(element);
-        }
+
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', toggleMenu);
     }
-    
+
+    submenuTriggers.forEach((trigger) => {
+        trigger.addEventListener('click', () => {
+            toggleSubmenu(trigger);
+        });
+
+        trigger.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleSubmenu(trigger);
+            }
+        });
+    });
+
     // Reset mobiele open-status als het scherm naar desktop wordt vergroot
     window.addEventListener('resize', () => {
         if (window.innerWidth > 992) {
