@@ -13,17 +13,31 @@
         <div class="vh-div"></div>
 
         <header class="header-main">
-            <button type="button" class="menu-toggle" aria-label="Menu openen" aria-expanded="false" onclick="toggleMenu()">
+            <button
+                type="button"
+                class="menu-toggle"
+                aria-label="Menu openen"
+                aria-controls="navMain"
+                aria-expanded="false"
+                onclick="toggleMenu()"
+            >
                 ☰ Menu
             </button>
-
+        
             <nav class="nav-main" id="navMain" aria-label="Hoofdnavigatie">
                 <section class="section-home">
                     <h2><a class="a-h2" href="#">Home</a></h2>
                 </section>
-
+        
                 <section class="section-arcondition has-dropdown">
-                    <h2 class="h2-airco" onclick="toggleSubmenu(this)">
+                    <h2
+                        class="h2-airco"
+                        role="button"
+                        tabindex="0"
+                        aria-expanded="false"
+                        onclick="toggleSubmenu(this)"
+                        onkeydown="handleSubmenuKey(event, this)"
+                    >
                         Airconditioning <span class="arrow" aria-hidden="true">▾</span>
                     </h2>
                     <div class="nav-hidden-cont nav-hidden-cont1">
@@ -32,14 +46,28 @@
                         <a href="#">Airco Onderhoud</a>
                     </div>
                 </section>
-
+        
                 <section class="section-verwarming has-dropdown">
-                    <h2 class="h2-verwarming" onclick="toggleSubmenu(this)">
+                    <h2
+                        class="h2-verwarming"
+                        role="button"
+                        tabindex="0"
+                        aria-expanded="false"
+                        onclick="toggleSubmenu(this)"
+                        onkeydown="handleSubmenuKey(event, this)"
+                    >
                         Verwarming <span class="arrow" aria-hidden="true">▾</span>
                     </h2>
                     <div class="nav-hidden-cont nav-hidden-cont2">
                         <article class="has-sub-dropdown">
-                            <h3 class="h3-central-ver" onclick="toggleSubmenu(this)">
+                            <h3
+                                class="h3-central-ver"
+                                role="button"
+                                tabindex="0"
+                                aria-expanded="false"
+                                onclick="toggleSubmenu(this)"
+                                onkeydown="handleSubmenuKey(event, this)"
+                            >
                                 Centrale Verwarming <span class="arrow" aria-hidden="true">▸</span>
                             </h3>
                             <div class="verwarming central-ver">
@@ -47,9 +75,16 @@
                                 <a href="#">Onderhoud, Vervangen, Repareren</a>
                             </div>
                         </article>
-
+        
                         <article class="has-sub-dropdown">
-                            <h3 class="h3-radiatoren-ver" onclick="toggleSubmenu(this)">
+                            <h3
+                                class="h3-radiatoren-ver"
+                                role="button"
+                                tabindex="0"
+                                aria-expanded="false"
+                                onclick="toggleSubmenu(this)"
+                                onkeydown="handleSubmenuKey(event, this)"
+                            >
                                 Verwarming Radiatoren <span class="arrow" aria-hidden="true">▸</span>
                             </h3>
                             <div class="verwarming radiatoren-ver">
@@ -57,17 +92,17 @@
                                 <a href="#">Nieuw Verwarming Radiatoren Installeren</a>
                             </div>
                         </article>
-
+        
                         <div class="sub-direct-link">
                             <a class="a-h3" href="#">Hybride Warmtepomp</a>
                         </div>
                     </div>
                 </section>
-
+        
                 <section class="section-over-ons">
                     <h2><a class="a-h2" href="#">Over ons</a></h2>
                 </section>
-
+        
                 <section class="section-contact">
                     <h2><a class="a-h2" href="#">Contact</a></h2>
                 </section>
