@@ -33,12 +33,12 @@ Body {
 }
 
 .menu-toggle {
-    display: none; /* Verborgen op desktop */
+    display: none;
     width: 100%;
-    padding: 12px;
+    padding: 12px 16px;
     background: linear-gradient(to bottom, black, #333);
     color: whitesmoke;
-    font-size: 1.4rem;
+    font-size: 1.35rem;
     font-weight: bold;
     border: none;
     border-bottom: 2.5px solid red;
@@ -58,7 +58,7 @@ Body {
 
 .nav-main section {
     position: relative;
-    flex: 1; /* Verdeelt alle 5 items gelijkmatig over de breedte */
+    flex: 1;
     display: flex;
     flex-direction: column;
 }
@@ -69,14 +69,16 @@ Body {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 6px;
     text-align: center;
     color: whitesmoke;
     border-left: 2px solid var(--primary-gey);
     border-top: 4px solid var(--primary-gey);
-    padding: 10px 5px;
-    font-size: clamp(1rem, 1.5vw, 1.6rem); /* Schaalt automatisch mee met scherm! */
+    padding: 10px 8px;
+    font-size: clamp(1rem, 1.45vw, 1.55rem);
     margin: 0;
-    transition: background 0.3s, color 0.3s;
+    user-select: none;
+    transition: background 0.25s ease, color 0.25s ease;
 }
 
 .nav-main .a-h2 {
@@ -95,109 +97,138 @@ Body {
     color: wheat;
 }
 
-.nav-main .h2-airco:hover,
-.nav-main .h2-verwarming:hover {
-    cursor: context-menu;
+.arrow {
+    display: inline-block;
+    transition: transform 0.25s ease;
 }
 
 /* =========================================
-   DROPDOWN MENU'S (DESKTOP > 992px)
+   DESKTOP DROPDOWNS (> 992px)
    ========================================= */
 @media (min-width: 993px) {
     .nav-main .nav-hidden-cont {
+        display: block;
         position: absolute;
         top: 100%;
         left: 0;
-        width: 100%;
-        min-width: 240px;
-        background-color: rgba(245, 245, 245, 0.95);
-        padding: 10px;
+        min-width: 250px;
+        width: max-content;
+        max-width: 340px;
+        background-color: rgba(248, 248, 248, 0.98);
+        padding: 10px 12px;
         border-top: 2.5px solid red;
         border-bottom: 2.5px solid red;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-        
-        /* Verbergen zonder layout te breken */
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+
         opacity: 0;
         visibility: hidden;
-        transform: translateY(-10px);
-        transition: all 0.3s ease;
-        z-index: 10;
+        pointer-events: none;
+        transform: translateY(6px);
+        transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+        z-index: 1010;
     }
 
-    .nav-main section:hover .nav-hidden-cont {
+    /* Openen bij hover of focus binnen de sectie */
+    .nav-main section:hover > .nav-hidden-cont,
+    .nav-main section:focus-within > .nav-hidden-cont {
         opacity: 1;
         visibility: visible;
+        pointer-events: auto;
         transform: translateY(0);
     }
 
-    /* Submenu's (Centrale verwarming / Radiatoren) */
+    .nav-main section:hover .h2-airco .arrow,
+    .nav-main section:hover .h2-verwarming .arrow {
+        transform: rotate(180deg);
+    }
+
     .nav-main .nav-hidden-cont2 article {
         position: relative;
     }
 
+    /* Submenu's standaard rechts, maar bij Verwarming naar LINKS zodat het niet uit beeld valt */
     .verwarming {
+        display: block;
         position: absolute;
         top: 0;
         left: 100%;
-        width: 230px;
-        background-color: rgba(225, 225, 225, 0.98);
-        padding: 10px;
+        min-width: 240px;
+        width: max-content;
+        max-width: 320px;
+        background-color: rgba(232, 232, 232, 0.99);
+        padding: 10px 12px;
         border-top: 2.5px solid red;
         border-bottom: 2.5px solid red;
-        box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+
         opacity: 0;
         visibility: hidden;
-        transform: translateX(-10px);
-        transition: all 0.3s ease;
+        pointer-events: none;
+        transform: translateX(6px);
+        transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+        z-index: 1020;
     }
 
-    /* Voorkom dat submenu rechts buiten het scherm valt op kleinere desktops */
     .section-verwarming .verwarming {
-        left: 100%;
+        left: auto;
+        right: 100%;
+        transform: translateX(-6px);
     }
 
-    .nav-main .nav-hidden-cont2 article:hover .verwarming {
+    .nav-main .nav-hidden-cont2 article:hover > .verwarming,
+    .nav-main .nav-hidden-cont2 article:focus-within > .verwarming {
         opacity: 1;
         visibility: visible;
+        pointer-events: auto;
         transform: translateX(0);
     }
 }
 
-/* Stijlen voor links in dropdowns */
-.nav-main .nav-hidden-cont1 a {
-    font-size: 1.2rem;
-}
-.nav-main .nav-hidden-cont2 a {
-    font-size: 1.1rem;
-}
+/* Links en koppen in dropdowns */
 .nav-main .nav-hidden-cont a {
     display: block;
-    padding: 6px 5px;
+    padding: 7px 8px;
     margin-top: 4px;
     color: rgb(0, 0, 83);
     text-align: left;
     font-weight: 800;
     text-decoration: none;
     border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
-.nav-main .nav-hidden-cont a:hover {
+
+.nav-main .nav-hidden-cont1 a {
+    font-size: 1.15rem;
+}
+
+.nav-main .nav-hidden-cont2 a {
+    font-size: 1.05rem;
+}
+
+.nav-main .nav-hidden-cont a:hover,
+.nav-main .nav-hidden-cont a:focus-visible {
     color: rgb(1, 1, 255);
-    background-color: rgba(0, 0, 83, 0.08);
+    background-color: rgba(0, 0, 83, 0.09);
 }
 
 .nav-main .nav-hidden-cont2 h3 {
     color: rgb(0, 0, 83);
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     margin: 8px 0 4px 0;
-    padding: 5px;
+    padding: 7px 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 8px;
+    border-radius: 4px;
+    background: rgba(0, 0, 83, 0.05);
 }
 
 .nav-main .nav-hidden-cont2 .a-h3 {
-    font-size: 1.25rem;
-    margin-top: 8px;
+    font-size: 1.15rem;
+    margin-top: 10px;
+    border-top: 1px solid rgba(0, 0, 83, 0.15);
+    padding-top: 10px;
 }
 
 /* =========================================
@@ -214,10 +245,10 @@ Body {
     }
 
     .nav-main {
-        display: none; /* Verborgen totdat op hamburger wordt geklikt */
+        display: none;
         flex-direction: column;
         max-height: 85vh;
-        overflow-y: auto; /* Scrollbaar als menu erg lang is */
+        overflow-y: auto;
         background: #1a1a1a;
     }
 
@@ -227,8 +258,8 @@ Body {
 
     .nav-main h2 {
         justify-content: space-between;
-        padding: 14px 20px;
-        font-size: 1.25rem;
+        padding: 14px 18px;
+        font-size: 1.2rem;
         border-left: none;
         border-top: 1px solid #444;
     }
@@ -237,30 +268,32 @@ Body {
         justify-content: flex-start;
     }
 
-    /* Dropdowns klappen nu verticaal naar beneden uit */
     .nav-main .nav-hidden-cont {
         display: none;
         position: static;
         width: 100%;
-        background-color: #f0f0f0;
-        padding: 10px 20px;
+        max-width: none;
+        background-color: #f3f4f6;
+        padding: 8px 16px 12px 16px;
         border-top: 2px solid red;
         border-bottom: 2px solid red;
+        box-shadow: none;
     }
 
-    .nav-hidden-cont.open {
+    .nav-main .nav-hidden-cont.open {
         display: block;
     }
 
-    /* Sub-dropdowns klappen ook verticaal uit i.p.v. naar rechts */
     .verwarming {
         display: none;
         position: static;
         width: 100%;
-        background-color: #e0e0e0;
-        padding: 8px 15px;
-        margin-top: 5px;
+        max-width: none;
+        background-color: #e5e7eb;
+        padding: 6px 12px;
+        margin-top: 6px;
         border-left: 3px solid red;
+        box-shadow: none;
     }
 
     .verwarming.open {
@@ -269,103 +302,17 @@ Body {
 
     .nav-main .nav-hidden-cont2 h3 {
         cursor: pointer;
-        background: rgba(0, 0, 83, 0.05);
-        border-radius: 4px;
     }
-}
 
-/* =========================================
-   ANIMATIES & OVERIGE SECTIES (RESPONSIVE)
-   ========================================= */
-@keyframes pic-logo {
-    from {
-        transform: rotateY(0deg);
-        transform-origin: 50% 0;
+    /* Pijltje draaien wanneer het submenu open staat */
+    .h2-airco[aria-expanded="true"] .arrow,
+    .h2-verwarming[aria-expanded="true"] .arrow {
+        transform: rotate(180deg);
     }
-    to {
-        transform: rotateY(360deg);
-        transform-origin: 50% 0;
-    }
-}
 
-.pic-logo {
-    animation: pic-logo 3s infinite;
-}
-
-@keyframes pic-tel-so {
-    0%, 100% { transform: rotateZ(0deg); transform-origin: 100% 100%; }
-    50%, 80% { transform: rotateZ(10deg); transform-origin: 100% 100%; }
-    60% { transform: rotateZ(5deg); transform-origin: 100% 100%; }
-}
-
-.pic-tel-so {
-    animation: pic-tel-so 0.75s infinite;
-}
-
-/* Foutje in originele keyframes hersteld (stond 2x 0%) */
-@keyframes sterren {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-.ster1 { animation: sterren 6s infinite; }
-.ster2 { animation: sterren 3s infinite 2s; }
-.ster3 { animation: sterren 2s infinite; }
-
-/* Media queries voor je overige pagina-elementen */
-@media (max-width: 1397px) {
-    .test-foto h2 { font-size: 1.75rem; }
-    .div-leeg-informatie section article h2 { font-size: 1.5rem; }
-
-    .hulp-dienst {
-        border-top: 5px solid black;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-    .bel-voor {
-        justify-self: end;
-        align-self: start;
-    }
-    .hulp-dienst h2, .hulp-dienst h3 { font-size: 1.25rem; }
-    .hulp-dienst p { font-size: 1rem; }
-
-    .onderscheid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-}
-
-@media (max-width: 992px) {
-    .test-foto {
-        height: auto;
-        min-height: 50vh;
-    }
-    .test-foto article {
-        width: 90%;
-        left: 5%;
-    }
-    .div-leeg-informatie section {
-        width: 95%;
-        left: 2.5%;
-    }
-}
-
-@media (max-width: 650px) {
-    /* Op mobiele telefoons alles netjes onder elkaar in 1 kolom */
-    .hulp-dienst,
-    .onderscheid {
-        grid-template-columns: 1fr;
-    }
-    .bel-voor {
-        justify-self: start;
-    }
-    .test-foto h2 {
-        font-size: 1.4rem;
-    }
-    footer p {
-        font-size: 0.9rem;
+    .h3-central-ver[aria-expanded="true"] .arrow,
+    .h3-radiatoren-ver[aria-expanded="true"] .arrow {
+        transform: rotate(90deg);
     }
 }
 
