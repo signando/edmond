@@ -1,0 +1,1400 @@
+Body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(to top, #1e293b, 90%, red);
+    background-size: 100% 500%;
+}
+
+/* Basis & Reset voor de navigatie */
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-gey: #808080; /* Fallback voor je variabele */
+}
+
+.main-container {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.vh-div {
+    height: 8.5vh;
+}
+
+.header-main {
+    position: fixed;
+    top: 0;
+    left: 2.5%;
+    width: 95%;
+    z-index: 1000;
+    margin: 0;
+}
+
+.menu-toggle {
+    display: none; /* Verborgen op desktop */
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(to bottom, black, #333);
+    color: whitesmoke;
+    font-size: 1.4rem;
+    font-weight: bold;
+    border: none;
+    border-bottom: 2.5px solid red;
+    cursor: pointer;
+    text-align: left;
+}
+
+.nav-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    background: linear-gradient(to bottom, black, lightgrey);
+    border-bottom: 2.5px solid red;
+    width: 100%;
+    min-height: 55px;
+}
+
+.nav-main section {
+    position: relative;
+    flex: 1; /* Verdeelt alle 5 items gelijkmatig over de breedte */
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-main h2 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: whitesmoke;
+    border-left: 2px solid var(--primary-gey);
+    border-top: 4px solid var(--primary-gey);
+    padding: 10px 5px;
+    font-size: clamp(1rem, 1.5vw, 1.6rem); /* Schaalt automatisch mee met scherm! */
+    margin: 0;
+    transition: background 0.3s, color 0.3s;
+}
+
+.nav-main .a-h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav-main h2:hover {
+    cursor: pointer;
+    background: linear-gradient(to bottom, lightblue, rgb(0, 0, 83));
+    color: wheat;
+}
+
+.nav-main .h2-airco:hover,
+.nav-main .h2-verwarming:hover {
+    cursor: context-menu;
+}
+
+/* =========================================
+   DROPDOWN MENU'S (DESKTOP > 992px)
+   ========================================= */
+@media (min-width: 993px) {
+    .nav-main .nav-hidden-cont {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        min-width: 240px;
+        background-color: rgba(245, 245, 245, 0.95);
+        padding: 10px;
+        border-top: 2.5px solid red;
+        border-bottom: 2.5px solid red;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        
+        /* Verbergen zonder layout te breken */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        z-index: 10;
+    }
+
+    .nav-main section:hover .nav-hidden-cont {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    /* Submenu's (Centrale verwarming / Radiatoren) */
+    .nav-main .nav-hidden-cont2 article {
+        position: relative;
+    }
+
+    .verwarming {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        width: 230px;
+        background-color: rgba(225, 225, 225, 0.98);
+        padding: 10px;
+        border-top: 2.5px solid red;
+        border-bottom: 2.5px solid red;
+        box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.25);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(-10px);
+        transition: all 0.3s ease;
+    }
+
+    /* Voorkom dat submenu rechts buiten het scherm valt op kleinere desktops */
+    .section-verwarming .verwarming {
+        left: 100%;
+    }
+
+    .nav-main .nav-hidden-cont2 article:hover .verwarming {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0);
+    }
+}
+
+/* Stijlen voor links in dropdowns */
+.nav-main .nav-hidden-cont1 a {
+    font-size: 1.2rem;
+}
+.nav-main .nav-hidden-cont2 a {
+    font-size: 1.1rem;
+}
+.nav-main .nav-hidden-cont a {
+    display: block;
+    padding: 6px 5px;
+    margin-top: 4px;
+    color: rgb(0, 0, 83);
+    text-align: left;
+    font-weight: 800;
+    text-decoration: none;
+    border-radius: 4px;
+}
+.nav-main .nav-hidden-cont a:hover {
+    color: rgb(1, 1, 255);
+    background-color: rgba(0, 0, 83, 0.08);
+}
+
+.nav-main .nav-hidden-cont2 h3 {
+    color: rgb(0, 0, 83);
+    font-size: 1.25rem;
+    margin: 8px 0 4px 0;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-main .nav-hidden-cont2 .a-h3 {
+    font-size: 1.25rem;
+    margin-top: 8px;
+}
+
+/* =========================================
+   TABLET & MOBIEL (<= 992px)
+   ========================================= */
+@media (max-width: 992px) {
+    .header-main {
+        left: 0;
+        width: 100%;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-main {
+        display: none; /* Verborgen totdat op hamburger wordt geklikt */
+        flex-direction: column;
+        max-height: 85vh;
+        overflow-y: auto; /* Scrollbaar als menu erg lang is */
+        background: #1a1a1a;
+    }
+
+    .nav-main.active {
+        display: flex;
+    }
+
+    .nav-main h2 {
+        justify-content: space-between;
+        padding: 14px 20px;
+        font-size: 1.25rem;
+        border-left: none;
+        border-top: 1px solid #444;
+    }
+
+    .nav-main .a-h2 {
+        justify-content: flex-start;
+    }
+
+    /* Dropdowns klappen nu verticaal naar beneden uit */
+    .nav-main .nav-hidden-cont {
+        display: none;
+        position: static;
+        width: 100%;
+        background-color: #f0f0f0;
+        padding: 10px 20px;
+        border-top: 2px solid red;
+        border-bottom: 2px solid red;
+    }
+
+    .nav-hidden-cont.open {
+        display: block;
+    }
+
+    /* Sub-dropdowns klappen ook verticaal uit i.p.v. naar rechts */
+    .verwarming {
+        display: none;
+        position: static;
+        width: 100%;
+        background-color: #e0e0e0;
+        padding: 8px 15px;
+        margin-top: 5px;
+        border-left: 3px solid red;
+    }
+
+    .verwarming.open {
+        display: block;
+    }
+
+    .nav-main .nav-hidden-cont2 h3 {
+        cursor: pointer;
+        background: rgba(0, 0, 83, 0.05);
+        border-radius: 4px;
+    }
+}
+
+/* =========================================
+   ANIMATIES & OVERIGE SECTIES (RESPONSIVE)
+   ========================================= */
+@keyframes pic-logo {
+    from {
+        transform: rotateY(0deg);
+        transform-origin: 50% 0;
+    }
+    to {
+        transform: rotateY(360deg);
+        transform-origin: 50% 0;
+    }
+}
+
+.pic-logo {
+    animation: pic-logo 3s infinite;
+}
+
+@keyframes pic-tel-so {
+    0%, 100% { transform: rotateZ(0deg); transform-origin: 100% 100%; }
+    50%, 80% { transform: rotateZ(10deg); transform-origin: 100% 100%; }
+    60% { transform: rotateZ(5deg); transform-origin: 100% 100%; }
+}
+
+.pic-tel-so {
+    animation: pic-tel-so 0.75s infinite;
+}
+
+/* Foutje in originele keyframes hersteld (stond 2x 0%) */
+@keyframes sterren {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.ster1 { animation: sterren 6s infinite; }
+.ster2 { animation: sterren 3s infinite 2s; }
+.ster3 { animation: sterren 2s infinite; }
+
+/* Media queries voor je overige pagina-elementen */
+@media (max-width: 1397px) {
+    .test-foto h2 { font-size: 1.75rem; }
+    .div-leeg-informatie section article h2 { font-size: 1.5rem; }
+
+    .hulp-dienst {
+        border-top: 5px solid black;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    .bel-voor {
+        justify-self: end;
+        align-self: start;
+    }
+    .hulp-dienst h2, .hulp-dienst h3 { font-size: 1.25rem; }
+    .hulp-dienst p { font-size: 1rem; }
+
+    .onderscheid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+}
+
+@media (max-width: 992px) {
+    .test-foto {
+        height: auto;
+        min-height: 50vh;
+    }
+    .test-foto article {
+        width: 90%;
+        left: 5%;
+    }
+    .div-leeg-informatie section {
+        width: 95%;
+        left: 2.5%;
+    }
+}
+
+@media (max-width: 650px) {
+    /* Op mobiele telefoons alles netjes onder elkaar in 1 kolom */
+    .hulp-dienst,
+    .onderscheid {
+        grid-template-columns: 1fr;
+    }
+    .bel-voor {
+        justify-self: start;
+    }
+    .test-foto h2 {
+        font-size: 1.4rem;
+    }
+    footer p {
+        font-size: 0.9rem;
+    }
+}
+
+
+
+
+
+
+
+/* =========================================
+   HEADER & HEADING FIGURES (ALLE SCHERMEN)
+   ========================================= */
+   header {
+    width: 100%;
+    margin: 70px auto 0 auto; /* Veilige marge onder je vaste navigatiebalk */
+}
+
+.heading-figures {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    gap: 20px;
+    background: linear-gradient(to bottom, lightgrey, whitesmoke, lightgrey);
+    padding: 1rem;
+    overflow: hidden; /* Voorkomt horizontaal scrollen door animaties */
+}
+
+.heading-figures section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.heading-figures figure {
+    margin: 0;
+}
+
+/* Afbeeldingen schalen nu netjes mee zonder uit te breken */
+.heading-figures img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* De kaderlijnen rondom de iconen/afbeeldingen */
+.figures {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px; /* Vervangt de harde margin-left: 4rem */
+    padding: 10px 15px;
+    border-top: 8px solid var(--primary-gey);
+    border-left: 5px solid var(--primary-gey);
+    width: 100%;
+    max-width: 380px;
+}
+
+.figure-1e {
+    flex: 0 0 65px; /* Vaste basisbreedte voor het icoon */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.figure-2e {
+    flex: 1; /* Neemt de resterende ruimte in voor de tekst-afbeelding */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* =========================================
+   STERREN ANIMATIE CONTAINER (RESPONSIVE)
+   ========================================= */
+.div-sterren-tijden {
+    position: relative;
+    flex: 0 0 70px;
+    height: 70px;
+}
+
+.ster {
+    position: absolute;
+}
+
+.ster1 {
+    top: 5px;
+    left: 5px;
+    width: 45px;
+}
+
+.ster2 {
+    bottom: 5px;
+    left: 15px;
+    width: 35px;
+}
+
+.ster3 {
+    top: 10px;
+    right: 5px;
+    width: 28px;
+}
+
+.ster4 {
+    bottom: 5px;
+    right: 0;
+    width: 18px;
+}
+
+/* =========================================
+   TITELS (H1 & H2)
+   ========================================= */
+.heading-figures h2 {
+    font-size: clamp(1.25rem, 2vw, 2rem); /* Schaalt vloeiend mee */
+    margin: 10px 0 0 0;
+    color: var(--primary-gey);
+    text-shadow: 0px -2px 0px whitesmoke;
+}
+
+.heading-figures h2 span {
+    text-shadow: 0px -2px 0px blue;
+    color: rgb(0, 195, 255);
+}
+
+.div-h1 {
+    background: linear-gradient(to bottom, lightgrey, black);
+    border-top: 2.5px solid red;
+    padding: 5px 10px;
+}
+
+h1 {
+    visibility: hidden;
+    color: var(--primary-gey);
+    text-align: center;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    margin: 0;
+    text-shadow: 0 -3.75px 1px lightblue;
+}
+
+h1 span {
+    color: lightblue;
+    text-shadow: 0 -5px 1px blue;
+}
+
+/* =========================================
+   TABLETS & KLEINE LAPTOPS (<= 1024px)
+   ========================================= */
+@media (max-width: 1024px) {
+    .heading-figures {
+        flex-wrap: wrap; /* Laat items netjes naar de volgende regel zakken */
+    }
+
+    /* Het logo komt bovenaan gecentreerd over de hele breedte */
+    .heading-section1 {
+        flex: 1 1 100%;
+        margin-bottom: 10px;
+    }
+
+    /* Telefoon en tijden komen netjes naast elkaar op de 2e rij */
+    .heading-section2,
+    .heading-section3 {
+        flex: 1 1 45%;
+    }
+}
+
+/* =========================================
+   MOBIELE TELEFOONS (<= 650px)
+   ========================================= */
+@media (max-width: 650px) {
+    header {
+        margin-top: 60px; /* Sluit mooi aan onder de mobiele menuknop */
+    }
+
+    .heading-figures {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 0.75rem;
+    }
+
+    .heading-section1,
+    .heading-section2,
+    .heading-section3 {
+        width: 100%;
+        flex: none;
+    }
+
+    .figures {
+        border-top: 5px solid var(--primary-gey);
+        border-left: 4px solid var(--primary-gey);
+        padding: 8px 10px;
+        gap: 10px;
+        max-width: 100%;
+    }
+
+    .figure-1e {
+        flex: 0 0 50px;
+    }
+
+    .div-sterren-tijden {
+        flex: 0 0 55px;
+        height: 55px;
+    }
+
+    .ster1 { width: 35px; }
+    .ster2 { width: 28px; }
+    .ster3 { width: 22px; }
+    .ster4 { width: 15px; }
+
+    /* Optioneel: op hele kleine schermen de herhaalde H2 onder elk blok iets subtieler maken */
+    .heading-figures h2 {
+        font-size: 1.35rem;
+    }
+}
+
+
+
+
+
+
+
+/* =========================================
+   HERO / BANNER SECTIE (.test-foto)
+   ========================================= */
+   .test-foto {
+    position: relative;
+    width: 100%;
+    min-height: 60vh; /* Min-height i.p.v. vaste height zodat het meegroeit */
+    margin: 0 auto;
+    border-bottom: 2.5px solid red;
+    display: flex;
+    align-items: center; /* Centreert de tekstbox verticaal */
+    overflow: hidden;
+}
+
+.test-foto article {
+    position: relative;
+    z-index: 2;
+    width: 40%;
+    max-width: 550px;
+    margin-left: 10%;
+    margin-top: -5vh; /* Iets hoger zodat de onderste kaarten er mooi onder vallen */
+    margin-bottom: 5vh;
+    background-color: rgba(211, 211, 211, 0.85);
+    padding: 20px 25px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom: 2.5px solid red;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.test-foto h2 {
+    margin: 0 0 1rem 0;
+    font-size: clamp(1.6rem, 2.5vw, 2.5rem); /* Schaalt vloeiend mee */
+    text-align: center;
+}
+
+.test-foto hr {
+    height: 8px;
+    width: 30%;
+    margin: 0 auto 1rem auto;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 2.5px 2.5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.test-foto p {
+    font-size: clamp(1rem, 1.2vw, 1.25rem);
+    font-weight: 900;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Blauwe overlay */
+.test-foto div {
+    position: absolute;
+    inset: 0; /* Vult de hele .test-foto container */
+    background-color: rgba(0, 0, 255, 0.25);
+    z-index: 1;
+}
+
+/* Achtergrondafbeelding zonder vervorming */
+.test-foto img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Voorkomt uitrekken van de foto */
+    z-index: 0;
+}
+
+/* =========================================
+   INFORMATIE KAARTEN (.div-leeg-informatie)
+   ========================================= */
+.div-leeg-informatie {
+    position: relative;
+    width: 100%;
+    min-height: 25vh; /* Groeit automatisch mee met de inhoud! */
+    margin: 0 auto;
+    padding-bottom: 40px;
+    background-color: lightgrey;
+}
+
+.div-leeg-informatie section {
+    width: 85%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    position: relative;
+    top: -12vh; /* Zweeft netjes over de onderrand van de foto */
+    margin-bottom: -10vh; /* Compenseert de lege ruimte onderaan door top: -12vh */
+    z-index: 3;
+}
+
+.div-leeg-informatie section .h2-informatie {
+    grid-column: 1 / -1; /* Spant over alle kolommen */
+    text-align: center;
+    margin: 0 0 10px 0;
+    font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Beter leesbaar op de foto */
+}
+
+.div-leeg-informatie section article {
+    width: 100%;
+    background-color: rgba(235, 235, 235, 0.92);
+    padding: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom: 2.5px solid red;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.div-leeg-informatie section article h2 {
+    font-size: clamp(1.4rem, 1.8vw, 2rem);
+    margin: 0;
+}
+
+.div-leeg-informatie section article p {
+    font-size: clamp(1rem, 1.1vw, 1.2rem);
+    font-weight: 800;
+    line-height: 1.5;
+    margin-top: 15px;
+}
+
+.div-h2-informatie {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.div-h2-informatie figure {
+    margin: 0;
+    flex-shrink: 0; /* Voorkomt dat iconen worden platgedrukt */
+}
+
+.div-h2-informatie1 img { width: 65px; height: auto; }
+.div-h2-informatie2 img { width: 60px; height: auto; }
+.div-h2-informatie3 img { width: 55px; height: auto; }
+
+/* =========================================
+   TABLETS & KLEINE LAPTOPS (<= 1100px)
+   ========================================= */
+@media (max-width: 1100px) {
+    .test-foto article {
+        width: 65%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 5vh;
+        margin-bottom: 15vh; /* Ruimte laten voor de overlappende kaarten */
+    }
+
+    .div-leeg-informatie section {
+        width: 92%;
+        grid-template-columns: repeat(2, 1fr); /* 2 kaarten naast elkaar */
+        top: -10vh;
+        margin-bottom: -8vh;
+    }
+
+    /* De 3e kaart netjes gecentreerd over de onderste rij of volledige breedte */
+    .div-leeg-informatie section article:last-child {
+        grid-column: 1 / -1;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}
+
+/* =========================================
+   MOBIELE TELEFOONS (<= 700px)
+   ========================================= */
+@media (max-width: 700px) {
+    .test-foto {
+        min-height: 45vh;
+        padding: 30px 15px;
+    }
+
+    .test-foto article {
+        width: 100%;
+        margin: 0;
+        padding: 15px;
+    }
+
+    .div-leeg-informatie {
+        padding: 25px 15px;
+    }
+
+    /* Op mobiel halen we de negatieve overlap weg zodat alles strak onder elkaar staat */
+    .div-leeg-informatie section {
+        position: static;
+        width: 100%;
+        grid-template-columns: 1fr; /* 1 kaart per rij */
+        margin-bottom: 0;
+        gap: 20px;
+    }
+
+    .div-leeg-informatie section .h2-informatie {
+        color: #111;
+        text-shadow: none;
+        margin-bottom: 5px;
+    }
+
+    .div-leeg-informatie section article:last-child {
+        max-width: 100%;
+    }
+
+    .div-h2-informatie1 img { width: 50px; }
+    .div-h2-informatie2 img { width: 45px; }
+    .div-h2-informatie3 img { width: 42px; }
+}
+
+
+
+
+
+
+
+
+.reviews-section {
+    background: linear-gradient(to bottom, lightgrey, transparent);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #1e293b;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 1.5vh;
+}
+
+.reviews-container {
+    max-width: 750px;
+    margin: 0 auto;
+    /*background-color: rgba(245, 245, 245, 0.75);
+    background: linear-gradient(to bottom, lightgrey, transparent);*/
+    padding: 20px;
+    padding-top: 0;
+    border-radius: 20px;
+    /*box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.3), -5px -5px 5px 5px rgba(0, 0, 0, 0.3);*/
+}
+
+.reviews-container h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 35px;
+}
+
+/* Slider opbouw */
+.slider-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.slider-viewport {
+    overflow: hidden;
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    background: #ffffff;
+}
+
+.slider-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    width: 100%;
+}
+
+.review-slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    padding: 40px 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.stars {
+    color: #f59e0b;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    letter-spacing: 3px;
+}
+
+.review-text {
+    font-size: 1.15rem;
+    color: #475569;
+    font-style: italic;
+    line-height: 1.6;
+    margin: 0 0 20px 0;
+}
+
+.client-name {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.client-role {
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+/* Pijlknoppen */
+.nav-btn {
+    background-color: #ffffff;
+    color: #3b82f6;
+    border: 1px solid #e2e8f0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+}
+
+.nav-btn:hover {
+    background-color: #3b82f6;
+    color: #ffffff;
+    transform: scale(1.08);
+}
+
+/* Bolletjes onder de slider */
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 20px 0 45px 0;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #cbd5e1;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.dot.active {
+    background-color: #3b82f6;
+    transform: scale(1.3);
+}
+
+/* Formulier styling */
+.review-form-box {
+    /*background: #ffffff;*/
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    max-width: 580px;
+    margin: 0 auto;
+}
+
+.review-form-box h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.35rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.form-group {
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+}
+
+.submit-btn {
+    width: 100%;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    padding: 13px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+}
+
+.submit-btn:hover {
+    background-color: #2563eb;
+}
+
+@media (max-width: 600px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    .review-slide {
+        padding: 30px 20px;
+    }
+}
+
+
+
+
+@media (max-width: 600px) {
+    .reviews-section {
+        width: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .reviews-container {
+        padding: 10px;
+    }
+
+    .slider-wrapper {
+        gap: 8px;
+    }
+
+    .nav-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 0.95rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .review-form-box {
+        padding: 20px 15px;
+    }
+
+    .review-slide {
+        padding: 28px 18px;
+    }
+}
+
+
+
+
+
+
+
+
+
+/* =========================================
+   HULP DIENST BALK ONDERAAN (DESKTOP > 1150px)
+   ========================================= */
+   .hulp-dienst {
+    width: 95%;
+    position: fixed;
+    bottom: 0;
+    left: 2.5%;
+    background-color: black;
+    border-top: 2.5px solid red;
+    z-index: 900;
+    display: grid;
+    grid-template-columns: 1.1fr 1.1fr auto auto;
+    align-items: center;
+    gap: 15px;
+    padding: 8px 15px;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.article-hulp-dienst {
+    margin: 0;
+}
+
+.hulp-dienst h2 {
+    margin: 0 0 2px 0;
+    color: red;
+    font-size: clamp(1.1rem, 1.5vw, 1.65rem);
+}
+
+.hulp-dienst p {
+    margin: 0;
+    color: antiquewhite;
+    font-size: clamp(0.85rem, 1.1vw, 1.25rem);
+    line-height: 1.3;
+}
+
+.bel-voor {
+    margin: 0;
+}
+
+/* Telefoon link & icoon */
+.aside-tel-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tel-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.tel-link:hover {
+    transform: scale(1.03);
+}
+
+.hulp-dienst h3 {
+    margin: 0;
+    color: antiquewhite;
+    font-size: clamp(1.1rem, 1.6vw, 1.75rem);
+    white-space: nowrap; /* Voorkomt dat het telefoonnummer over 2 regels breekt */
+}
+
+.figure-tel {
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.figure-tel img {
+    width: 36px;
+    height: auto;
+    display: block;
+}
+
+/* Facebook & Logo rechts */
+.hulpdienst-facebook-logo {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+}
+
+.facebook-logo {
+    margin: 0;
+    background-color: #f59e0b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.facebook-logo img {
+    width: 55px;
+    height: auto;
+    display: block;
+}
+
+.logo2 {
+    display: flex;
+    align-items: center;
+    background-color: antiquewhite;
+    padding: 4px 8px;
+    border-radius: 4px;
+    gap: 6px;
+}
+
+.logo2 figure {
+    margin: 0;
+}
+
+.logo2 img {
+    max-height: 45px;
+    width: auto;
+    display: block;
+}
+
+.logo-curned-so {
+    align-self: center;
+}
+
+/* =========================================
+   TABLETS & KLEINE LAPTOPS (<= 1150px)
+   ========================================= */
+@media (max-width: 1150px) {
+    .hulp-dienst {
+        grid-template-columns: 1fr auto auto; /* 3 kolommen: tekst, telefoon, logo's */
+        padding: 8px 12px;
+    }
+
+    /* De extra uitlegtekst verbergen zodat de balk compact blijft */
+    .bel-voor {
+        display: none;
+    }
+}
+
+/* =========================================
+   MOBIELE TELEFOONS (<= 700px)
+   ========================================= */
+@media (max-width: 700px) {
+    .hulp-dienst {
+        left: 0;
+        width: 100%;
+        grid-template-columns: 1fr auto; /* Alleen titel/telefoon + Facebook */
+        gap: 10px;
+        padding: 8px 12px;
+    }
+
+    /* Subtekst en dubbel bedrijfslogo verbergen zodat de balk niet het hele scherm bedekt */
+    .article-hulp-dienst p,
+    .logo2 {
+        display: none;
+    }
+
+    .article-hulp-dienst h2 {
+        font-size: 1rem;
+    }
+
+    .aside-tel-info {
+        justify-content: flex-start;
+    }
+
+    .figure-tel img {
+        width: 26px;
+    }
+
+    .hulp-dienst h3 {
+        font-size: 1.05rem;
+    }
+
+    .facebook-logo img {
+        width: 40px;
+    }
+}
+
+/* =========================================
+   ZEER SMALLE TELEFOONS (<= 380px)
+   ========================================= */
+@media (max-width: 380px) {
+    .hulp-dienst {
+        padding: 6px 8px;
+        gap: 6px;
+    }
+
+    .article-hulp-dienst h2 {
+        font-size: 0.9rem;
+    }
+
+    .hulp-dienst h3 {
+        font-size: 0.95rem;
+    }
+
+    .facebook-logo img {
+        width: 34px;
+    }
+}
+
+
+
+
+
+
+
+/* =========================================
+   ONDERSCHEID SECTIE (DESKTOP > 1100px)
+   ========================================= */
+   .onderscheid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr)); /* 4 gelijke kolommen zonder overflow */
+    gap: 20px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 15px 0;
+    color: whitesmoke;
+}
+
+.onderscheid h3 {
+    margin: 0;
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: clamp(1.35rem, 2vw, 1.85rem);
+    border-top: 2.5px solid var(--primary-light-grey);
+    padding-top: 12px;
+}
+
+.onderscheid aside {
+    background-color: rgba(211, 211, 211, 0.82);
+    border-top: 10px solid rgb(53, 53, 53);
+    border-left: 5px solid rgb(53, 53, 53);
+    padding: 15px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.onderscheid aside h4 {
+    margin: 0;
+    padding-top: 6px;
+    text-align: center;
+    border-top: 2px solid rgba(255, 255, 255, 0.7);
+    font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+    color: black;
+    text-shadow: 0 -1.5px 1px whitesmoke;
+}
+
+.onderscheid aside span {
+    color: rgb(0, 140, 220);
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.25);
+}
+
+.onderscheid aside p {
+    font-size: clamp(0.98rem, 1.15vw, 1.2rem);
+    font-weight: 800;
+    line-height: 1.5;
+    margin: 0;
+    color: black;
+}
+
+/* =========================================
+   FOOTER (ALLE SCHERMEN)
+   ========================================= */
+footer {
+    width: 100%;
+    min-height: 55px;
+    margin: 25px auto 0 auto;
+    padding: 12px 15px 75px 15px; /* Extra ruimte onderaan zodat vaste .hulp-dienst niets afdekt */
+    background-color: red;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    box-sizing: border-box;
+}
+
+footer .div1,
+footer .div2 {
+    flex: 1;
+}
+
+footer p {
+    margin: 0;
+    text-align: center;
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    line-height: 1.4;
+    color: whitesmoke;
+    font-weight: 600;
+}
+
+/* =========================================
+   TABLETS & KLEINE LAPTOPS (<= 1100px)
+   ========================================= */
+@media (max-width: 1100px) {
+    .onderscheid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2x2 grid op tablets */
+        gap: 16px;
+    }
+}
+
+/* =========================================
+   MOBIELE TELEFOONS (<= 650px)
+   ========================================= */
+@media (max-width: 650px) {
+    .onderscheid {
+        width: 100%;
+        padding: 10px;
+        grid-template-columns: 1fr; /* 1 kolom onder elkaar op mobiel */
+        gap: 14px;
+    }
+
+    .onderscheid aside {
+        border-top-width: 6px;
+        border-left-width: 4px;
+        padding: 12px;
+    }
+
+    footer {
+        width: 100%;
+        flex-direction: column;
+        text-align: center;
+        gap: 6px;
+        padding: 14px 10px 70px 10px;
+    }
+}
+
+
+
+
+
+
+.vh-end-div {
+    width: 100%;
+    height: 17.5vh;
+}
