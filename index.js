@@ -1,56 +1,15 @@
 "use strict";
 document.addEventListener("DOMContentLoaded", function() {
-    const nav = document.getElementById('navMain');
-    const toggleBtn = document.querySelector('.menu-toggle');
-    const submenuTriggers = document.querySelectorAll('.h2-airco, .h2-verwarming, .h3-central-ver, .h3-radiatoren-ver');
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMain = document.getElementById('navMain');
 
-    function toggleMenu() {
-        if (!nav) return;
-
-        const isOpen = nav.classList.toggle('active');
-        if (toggleBtn) {
-            toggleBtn.setAttribute('aria-expanded', String(isOpen));
-            toggleBtn.textContent = isOpen ? '✕ Sluiten' : '☰ Menu';
-        }
-    }
-
-    function toggleSubmenu(element) {
-        if (window.innerWidth > 992 || !element) return;
-
-        const submenu = element.nextElementSibling;
-        if (!submenu) return;
-
-        const isOpen = submenu.classList.toggle('open');
-        element.setAttribute('aria-expanded', String(isOpen));
-    }
-
-    if (toggleBtn) {
-        toggleBtn.addEventListener('click', toggleMenu);
-    }
-
-    submenuTriggers.forEach((trigger) => {
-        trigger.addEventListener('click', () => {
-            toggleSubmenu(trigger);
-        });
-
-        trigger.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                toggleSubmenu(trigger);
-            }
-        });
-    });
-
-    // Reset mobiele open-status als het scherm naar desktop wordt vergroot
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 992) {
-            document.querySelectorAll('.nav-hidden-cont.open, .verwarming.open').forEach((el) => {
-                el.classList.remove('open');
-            });
-            document.querySelectorAll('.nav-main [aria-expanded="true"]').forEach((el) => {
-                el.setAttribute('aria-expanded', 'false');
-            });
-        }
+    menuToggle.addEventListener('click', () => {
+        // Wissel de 'is-open' class om het menu te tonen/verbergen
+        const isOpen = navMain.classList.toggle('is-open');
+        
+        // Update accessibility (toegankelijkheid) en knoptekst
+        menuToggle.setAttribute('aria-expanded', isOpen);
+        menuToggle.textContent = isOpen ? '✕ Sluiten' : '☰ Menu';
     });
 
 
