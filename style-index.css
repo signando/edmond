@@ -13,6 +13,8 @@ Body {
 
 :root {
     --primary-gey: #808080; /* Fallback voor je variabele */
+    --orange: #f59e0b;
+    --black-blue: #1e293b;
 }
 
 .main-container {
