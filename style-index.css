@@ -19,13 +19,13 @@ Body {
     width: 95%;
     margin: 0 auto;
 }
-/*
-.vh-div {
-    height: 8.5vh;
-}
-*/
+
 :root {
     --primary-gey: #808080;
+}
+
+.active-page {
+    background: #f59e0b;
 }
 
 .header-main {
