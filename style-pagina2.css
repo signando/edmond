@@ -1,0 +1,169 @@
+
+.airco-pagina {
+    width: 100%;
+    /*max-width: 1400px;*/
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Banner / afbeelding met tekst */
+.test-foto {
+    position: relative;
+    width: 100%;
+    min-height: 240px;
+    margin: 28px 0 20px 0;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background-color: #111;
+}
+
+.test-foto img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* Donkere waas zodat witte tekst op elk scherm goed leesbaar blijft */
+.foto-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.45) 100%);
+    z-index: 2;
+}
+
+.test-foto article {
+    position: relative;
+    z-index: 3;
+    background-color: transparent;
+    color: whitesmoke;
+    width: 92%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px 0;
+    border-bottom: none;
+    box-shadow: none;
+}
+
+.test-foto article h2 {
+    text-align: left;
+    margin: 0 0 10px 0;
+    font-size: clamp(1.5rem, 2.8vw, 2.5rem);
+}
+
+.test-foto article hr {
+    width: min(140px, 30%);
+    border: none;
+    border-top: 3px solid red;
+    margin: 0 0 1rem 0;
+}
+
+.test-foto article .h2-tweede {
+    font-size: clamp(1.6rem, 3.8vw, 3.5rem);
+    line-height: 1.15;
+    color: var(--black-blue, #000053);
+    background-color: rgba(245, 245, 245, 0.85);
+    border-left: 8px solid var(--orange, #000053);
+    padding: 10px 18px;
+    margin-bottom: 12px;
+    display: inline-block;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.test-foto article .p-tweede {
+    color: whitesmoke;
+    font-size: clamp(1rem, 1.4vw, 1.3rem);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Tekstsecties */
+.sections-airco {
+    color: whitesmoke;
+    margin-bottom: 32px;
+    line-height: 1.65;
+}
+
+.sections-airco h3 {
+    font-size: clamp(1.3rem, 2.2vw, 2rem);
+    border-left: 5px solid var(--orange, #000053);
+    padding-left: 14px;
+    margin: 24px 0 12px 0;
+    line-height: 1.3;
+}
+
+.sections-airco p {
+    font-size: clamp(1rem, 1.25vw, 1.25rem);
+    font-weight: 500;
+    margin: 0 0 14px 0;
+}
+
+.sections-airco ul {
+    margin: 0 0 18px 0;
+    padding-left: 22px;
+}
+
+.sections-airco ul li {
+    font-size: clamp(1rem, 1.25vw, 1.25rem);
+    margin-bottom: 8px;
+    line-height: 1.55;
+}
+
+.sections-airco a {
+    color: #fbbf24;
+    text-decoration: underline;
+    font-weight: 700;
+}
+
+.sections-airco a:hover {
+    color: whitesmoke;
+}
+
+/* --- TABLET (tot 768px) --- */
+@media (max-width: 768px) {
+    .test-foto {
+        min-height: 200px;
+        margin: 20px 0 16px 0;
+    }
+
+    .test-foto article {
+        padding: 18px 0;
+    }
+
+    .test-foto article .h2-tweede {
+        border-left-width: 6px;
+        padding: 8px 14px;
+    }
+}
+
+/* --- MOBIEL (tot 480px) --- */
+@media (max-width: 480px) {
+    .airco-pagina {
+        padding: 0 12px;
+    }
+
+    .test-foto {
+        min-height: 170px;
+    }
+
+    .test-foto article .h2-tweede {
+        display: block;
+        width: 100%;
+        padding: 8px 12px;
+    }
+
+    .sections-airco h3 {
+        padding-left: 10px;
+        border-left-width: 4px;
+    }
+
+    .sections-airco ul {
+        padding-left: 18px;
+    }
+}
