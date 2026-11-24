@@ -68,7 +68,7 @@
     line-height: 1.15;
     color: var(--black-blue, #000053);
     background-color: rgba(245, 245, 245, 0.85);
-    border-left: 8px solid var(--orange);
+    border-left: 8px solid var(--orange, #000053);
     padding: 10px 18px;
     margin-bottom: 12px;
     display: inline-block;
