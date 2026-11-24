@@ -1,8 +1,8 @@
 Body {
     margin: 0;
     height: 100vh;
-    background: linear-gradient(to top, #1e293b, 90%, red);
-    background-size: 100% 1000%;
+    background: linear-gradient(to top, #1e293b, 97.5%, red);
+    background-size: 100% 2000%;
     font-family: sans-serif, Verdana, Geneva, Tahoma;
 }
 
@@ -17,6 +17,10 @@ Body {
     --black-blue: #1e293b;
 }
 
+.active-page {
+    background: #f59e0b;
+}
+
 .main-container {
     width: 95%;
     margin: 0 auto;
@@ -24,10 +28,6 @@ Body {
 
 :root {
     --primary-gey: #808080;
-}
-
-.active-page {
-    background: #f59e0b;
 }
 
 .header-main {
@@ -63,7 +63,7 @@ Body {
     display: flex;
     justify-content: space-between;
     align-items: stretch;
-    background: linear-gradient(to bottom, black, lightgrey);
+    background: linear-gradient(to bottom, var(--black-blue), lightgrey);
     border-bottom: 2.5px solid red;
     width: 100%;
     padding: 5px;
@@ -338,13 +338,12 @@ Body {
 }
 
 .div-h1 {
-    background: linear-gradient(to bottom, lightgrey, black);
+    background: linear-gradient(to bottom, lightgrey, var(--black-blue));
     border-top: 2.5px solid red;
     padding: 5px 10px;
 }
 
 h1 {
-    visibility: hidden;
     color: var(--primary-gey);
     text-align: center;
     font-size: clamp(1.8rem, 4vw, 3rem);
@@ -352,9 +351,13 @@ h1 {
     text-shadow: 0 -3.75px 1px lightblue;
 }
 
-h1 span {
+h1 .span-cool {
     color: lightblue;
     text-shadow: 0 -5px 1px blue;
+}
+
+h1 .span-page {
+    color: var(--black-blue);
 }
 
 /* =========================================
@@ -979,9 +982,10 @@ input:focus, select:focus, textarea:focus {
 
 .aside-tel-info h3 {
     margin: 0;
-    color: antiquewhite;
+    color: var(--orange);
     font-size: clamp(1rem, 1.4vw, 1.55rem);
     white-space: nowrap;
+    border-bottom: 2.5px solid var(--orange);
 }
 
 .figure-tel {
