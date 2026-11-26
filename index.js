@@ -1,5 +1,7 @@
 "use strict";
 document.addEventListener("DOMContentLoaded", function() {
+
+    /* Start Alle paginas hoofd navegatie menu */
     const menuToggle = document.querySelector('.menu-toggle');
     const navMain = document.getElementById('navMain');
 
@@ -20,6 +22,93 @@ const dotsContainer = document.getElementById('slider-dots');
 const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
 const reviewForm = document.getElementById('review-form');
+
+/* End Alle paginas hoofd navegatie menu */
+
+
+
+
+
+
+/* Start Pagina5 Contact formulier */
+
+const contactFormulier = document.getElementById("contactFormulier");
+const formBevestiging = document.getElementById("formBevestiging");
+const formFoutmelding = document.getElementById("formFoutmelding");
+
+if (contactFormulier && formBevestiging && formFoutmelding) {
+    const verzendKnop = contactFormulier.querySelector('button[type="submit"]');
+    const origineleKnopTekst = verzendKnop ? verzendKnop.textContent : "Verzend bericht";
+
+    contactFormulier.addEventListener("submit", async (e) => {
+        // Houdt de browser op de huidige pagina (stopt de standaard Formspree-pagina)
+        e.preventDefault();
+
+        const naam = document.getElementById("naam").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const tel = document.getElementById("tel").value.trim();
+        const vraagWens = document.getElementById("vraagWens").value.trim();
+
+        const emailGeldig = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+        // Controleer verplichte velden
+        if (!naam || !emailGeldig || !tel || !vraagWens) {
+            formBevestiging.hidden = true;
+            formFoutmelding.textContent = "Vul alstublieft uw naam, een geldig e-mailadres, telefoonnummer en bericht in.";
+            formFoutmelding.hidden = false;
+            return;
+        }
+
+        formFoutmelding.hidden = true;
+        formBevestiging.hidden = true;
+
+        if (verzendKnop) {
+            verzendKnop.disabled = true;
+            verzendKnop.textContent = "Bezig met verzenden...";
+        }
+
+        try {
+            // Verzamelt alle ingevulde waarden (naam, email, tel, straat, huisnummer, toevoeging, postcode, stad, message)
+            const formData = new FormData(contactFormulier);
+
+            const response = await fetch(contactFormulier.action, {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "Accept": "application/json" // Vertelt Formspree dat we JSON terug willen i.p.v. een redirect
+                }
+            });
+
+            if (response.ok) {
+                // Toon jouw eigen bevestigingsbericht uit de HTML
+                formBevestiging.hidden = false;
+                contactFormulier.reset();
+                formBevestiging.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            } else {
+                const data = await response.json().catch(() => null);
+                const foutTekst = data?.errors?.map(err => err.message).join(" ")
+                    || "Verzenden is tijdelijk niet gelukt. Probeer het later opnieuw of bel ons direct.";
+                formFoutmelding.textContent = foutTekst;
+                formFoutmelding.hidden = false;
+            }
+        } catch (error) {
+            formFoutmelding.textContent = "Er is een verbindingsfout opgetreden. Controleer uw internetverbinding en probeer het opnieuw.";
+            formFoutmelding.hidden = false;
+        } finally {
+            if (verzendKnop) {
+                verzendKnop.disabled = false;
+                verzendKnop.textContent = origineleKnopTekst;
+            }
+        }
+    });
+}
+
+/* End Pagina5 Contact formulier */
+
+
+
+
+/* Recenties */
 
 // Standaard recensies
 const defaultReviews = [
