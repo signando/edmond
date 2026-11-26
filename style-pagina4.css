@@ -1,0 +1,374 @@
+:root {
+    --primary-gey: #808080; /* Fallback voor je variabele */
+    --orange: #f59e0b;
+    --black-blue: #1e293b;
+}
+
+.strong-woord {
+    color: wheat;
+}
+
+.test-foto p {
+    color: var(--black-blue);
+}
+
+.test-foto {
+    position: relative;
+    width: 100%;
+    min-height: clamp(320px, 52vh, 540px);
+    margin: 0 auto;
+    border-bottom: 2.5px solid red;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background-color: #090d16;
+    box-sizing: border-box;
+}
+
+/* Donkere overlay met licht/donker-verloop over de achtergrondfoto */
+.test-foto .foto-overlay,
+.test-foto div {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        115deg,
+        rgba(5, 10, 22, 0.82) 0%,
+        rgba(15, 23, 42, 0.58) 52%,
+        rgba(15, 23, 42, 0.35) 100%
+    );
+    z-index: 1;
+}
+
+/* Achtergrondafbeelding zonder vervorming */
+.test-foto img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.06) brightness(0.88);
+    z-index: 0;
+}
+
+/* Lichte kaart op donkere achtergrond voor sterk contrast */
+.test-foto article {
+    position: relative;
+    z-index: 2;
+    width: 44%;
+    max-width: 560px;
+    margin-left: clamp(20px, 8%, 120px);
+    margin-top: -16px;
+    margin-bottom: 16px;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(226, 232, 240, 0.90) 100%
+    );
+    color: var(--black-blue, #0f172a);
+    padding: clamp(20px, 3vw, 32px) clamp(20px, 3.2vw, 34px);
+    border-top: 1px solid rgba(255, 255, 255, 0.9);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom: 3px solid red;
+    box-shadow:
+        0 18px 36px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    box-sizing: border-box;
+}
+
+.test-foto .eyebrow {
+    margin: 0 0 6px 0;
+    font-size: clamp(0.9rem, 1.15vw, 1.1rem);
+    letter-spacing: 0.03em;
+    color: #334155;
+}
+
+.test-foto h2 {
+    margin: 0 0 12px 0;
+    font-size: clamp(1.75rem, 2.8vw, 2.6rem);
+    line-height: 1.15;
+    color: #090d16;
+    text-align: left;
+}
+
+/* Afscheiding met spel tussen licht en donker */
+.test-foto hr {
+    height: 6px;
+    width: 34%;
+    margin: 0 0 14px 0;
+    border: none;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--black-blue, #0f172a) 0%, rgba(255, 255, 255, 0.95) 100%);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.test-foto .lead,
+.test-foto p {
+    font-size: clamp(1rem, 1.2vw, 1.2rem);
+    font-weight: 700;
+    line-height: 1.55;
+    margin: 0;
+    color: var(--black-blue, #0f172a);
+}
+
+.test-foto small {
+    font-size: clamp(0.92rem, 1.05vw, 1.05rem);
+    font-weight: 600;
+    color: #1e293b;
+}
+
+/* --- TABLET (tot 900px) --- */
+@media (max-width: 900px) {
+    .test-foto {
+        min-height: 300px;
+        justify-content: center;
+        padding: 28px 16px;
+    }
+
+    .test-foto article {
+        width: min(88%, 540px);
+        margin: 0;
+    }
+
+    .test-foto h2 {
+        text-align: center;
+    }
+
+    .test-foto .eyebrow,
+    .test-foto .lead {
+        text-align: center;
+    }
+
+    .test-foto hr {
+        margin: 0 auto 14px auto;
+    }
+}
+
+/* --- MOBIEL (tot 480px) --- */
+@media (max-width: 480px) {
+    .test-foto {
+        min-height: 260px;
+        padding: 20px 12px;
+    }
+
+    .test-foto article {
+        width: 100%;
+        padding: 18px 16px;
+        border-top-left-radius: 14px;
+        border-top-right-radius: 14px;
+    }
+
+    .test-foto hr {
+        width: 45%;
+        height: 5px;
+    }
+}
+
+.edmond {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+    margin-top: 90px; /* Geeft ruimte aan de foto die op desktop iets uitsteekt */
+    padding: 36px 28px;
+    background-color: var(--black-blue);
+    color: whitesmoke;
+    border-radius: 8px;
+    box-sizing: border-box;
+    border-bottom: 2.5px solid red;
+}
+
+.div-leeg-foto-edmond {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edmond figure {
+    margin: -110px 0 0 0; /* Veilige overlap boven de kaart op desktop */
+    width: 65%; /*min(75%, 380px)*/
+    z-index: 300;
+}
+
+.edmond img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    border: 3px solid var(--orange);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+    object-fit: cover;
+}
+
+.article-over-edmond {
+    align-self: center;
+    font-size: clamp(1rem, 1.25vw, 1.25rem);
+    line-height: 1.65;
+    padding: 0 10px;
+}
+
+.article-over-edmond h2 {
+    margin: 4px 0 6px 0;
+    font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+    color: whitesmoke;
+}
+
+.p-edmond-lcht {
+    margin: 0 0 8px 0;
+    font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+    color: rgba(245, 245, 245, 0.65);
+}
+
+.article-over-edmond p {
+    margin: 0 0 14px 0;
+}
+
+.article-over-edmond ul {
+    margin: 8px 0 0 0;
+    padding-left: 22px;
+}
+
+.article-over-edmond ul li {
+    margin-bottom: 6px;
+}
+
+/* --- TABLET & KLEINERE LAPTOPS (tot 900px) --- */
+@media (max-width: 900px) {
+    .edmond {
+        grid-template-columns: 1fr;
+        margin-top: 28px;
+        padding: 28px 20px;
+        gap: 20px;
+    }
+
+    .edmond figure {
+        margin: 0;
+        width: min(65%, 320px);
+    }
+
+    .article-over-edmond {
+        padding: 0;
+    }
+}
+
+/* --- MOBIEL (tot 480px) --- */
+@media (max-width: 480px) {
+    .edmond {
+        margin-top: 20px;
+        padding: 22px 14px;
+        gap: 16px;
+    }
+
+    .edmond figure {
+        width: min(82%, 260px);
+    }
+
+    .article-over-edmond h2 {
+        font-size: 1.5rem;
+    }
+
+    .article-over-edmond ul {
+        padding-left: 18px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+.reviews-container h2 {
+    text-align: center;
+}
+.reviews-container .p-klant-woord {
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 1.5vh;
+    border-bottom: 5px dotted var(--orange);
+}
+
+.onderscheid .aside-onderscheid {
+    grid-area: 2 / 1 / 3 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.onderscheid .aside-onderscheid > div {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    justify-items: center;
+    align-items: center;
+    gap: 14px;
+    padding: 24px 16px;
+    background-color: var(--black-blue);
+    border-radius: 8px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.onderscheid .aside-onderscheid p {
+    display: grid;
+    place-items: center;
+    margin: 0;
+    background-color: var(--orange);
+    font-size: clamp(1.75rem, 2.5vw, 3rem);
+    font-weight: 700;
+    line-height: 1;
+    width: clamp(58px, 5vw, 80px);
+    height: clamp(58px, 5vw, 80px);
+    border-radius: 50%;
+    color: var(--black-blue);
+    flex-shrink: 0;
+}
+
+.onderscheid .aside-onderscheid h5 {
+    font-size: clamp(1.05rem, 1.4vw, 1.5rem);
+    line-height: 1.3;
+    margin: 0;
+    color: whitesmoke;
+}
+
+/* --- TABLET (tot 900px) --- */
+@media (max-width: 900px) {
+    .onderscheid .aside-onderscheid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    /* Laat kaart 3 op een even aantal kolommen netjes centreren of volle breedte pakken */
+    .onderscheid .aside-onderscheid > div:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+    }
+}
+
+/* --- MOBIEL (tot 600px) --- */
+@media (max-width: 600px) {
+    .onderscheid {
+        padding: 10px 0;
+        gap: 12px;
+    }
+
+    .onderscheid .aside-onderscheid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .onderscheid .aside-onderscheid > div:last-child:nth-child(odd) {
+        grid-column: auto;
+    }
+
+    .onderscheid .aside-onderscheid > div {
+        padding: 18px 14px;
+        gap: 10px;
+    }
+}
