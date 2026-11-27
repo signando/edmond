@@ -226,6 +226,12 @@
     }
 }
 
+@media (max-width: 640px) {
+    footer {
+        padding-bottom: 100px;
+    }
+}
+
 /* --- MOBIEL (tot 600px) --- */
 @media (max-width: 600px) {
     .contact-main {
