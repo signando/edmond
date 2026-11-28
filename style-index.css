@@ -1151,8 +1151,8 @@ input:focus, select:focus, textarea:focus {
         padding: 8px 14px;
     }
 
-    .bel-voor {
-        grid-column: 1 / -1;
+    .bel-voor 
+        grid-column: 2 / 1;
         order: 3;
     }
 
