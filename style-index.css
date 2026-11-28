@@ -1352,7 +1352,7 @@ footer p {
 /* --- TABLET (tot 1024px) --- */
 @media (max-width: 1024px) {
     footer {
-        padding: 5px 16px 145px 16px;
+        padding: 5px 16px 120px 16px;
     }
 }
 
