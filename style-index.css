@@ -443,78 +443,6 @@ h1 .span-page {
 
 
 
-
-
-/* =========================================
-   HERO / BANNER SECTIE (.test-foto)
-   ========================================= */
-   /*.test-foto {
-    position: relative;
-    width: 100%;
-    min-height: 60vh; /* Min-height i.p.v. vaste height zodat het meegroeit */
-    /*margin: 0 auto;
-    border-bottom: 2.5px solid red;
-    display: flex;
-    align-items: center; /* Centreert de tekstbox verticaal */
-    /*overflow: hidden;
-}*/
-/*
-.test-foto article {
-    position: relative;
-    z-index: 2;
-    width: 40%;
-    max-width: 550px;
-    margin-left: 10%;
-    margin-top: -5vh; /* Iets hoger zodat de onderste kaarten er mooi onder vallen */
-   /* margin-bottom: 5vh;
-    background-color: rgba(211, 211, 211, 0.85);
-    padding: 20px 25px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom: 2.5px solid red;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(0, 0, 0, 0.3);
-}*/
-/*
-.test-foto h2 {
-    margin: 0 0 1rem 0;
-    font-size: clamp(1.6rem, 2.5vw, 2.5rem); /* Schaalt vloeiend mee */
-    /*text-align: center;
-}
-*/
-/*.test-foto hr {
-    height: 8px;
-    width: 30%;
-    margin: 0 auto 1rem auto;
-    border: none;
-    background-color: rgba(255, 255, 255, 0.6);
-    box-shadow: 2.5px 2.5px 5px rgba(0, 0, 0, 0.3);
-}*/
-/*
-.test-foto p {
-    font-size: clamp(1rem, 1.2vw, 1.25rem);
-    font-weight: 900;
-    line-height: 1.5;
-    margin: 0;
-}
-*/
-/* Blauwe overlay */
-/*.test-foto div {
-    position: absolute;
-    inset: 0; /* Vult de hele .test-foto container 
-    background-color: rgba(0, 0, 255, 0.25);
-    z-index: 1;
-}
-*/
-/* Achtergrondafbeelding zonder vervorming */
-/*.test-foto img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Voorkomt uitrekken van de foto 
-    z-index: 0;
-}
-*/
 /* --------------------------------*/
 
 .test-foto {
@@ -1235,7 +1163,7 @@ input:focus, select:focus, textarea:focus {
 
     .hulpdienst-facebook-logo {
         order: 4;
-        grid-column: 1 / -1;
+        grid-column: 2 / -1;
         justify-content: flex-start;
     }
 }
